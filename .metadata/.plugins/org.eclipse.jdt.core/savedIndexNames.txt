@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+/media/bambang/Achiang/Coding/Java/.metadata/.plugins/org.eclipse.jdt.core
+3703194086.index
+35334824.index
+646308851.index
