@@ -8,7 +8,7 @@ import {
   Keyboard,
   ActivityIndicator,
 } from 'react-native';
-import Header1 from '../../reusable/header/Header1';
+import Header2 from '../../reusable/header/Header2';
 import styles from './AddBookStyle';
 import Axios from 'axios';
 import Input from '../../reusable/input/Input';
@@ -151,7 +151,7 @@ export default function AddBook({navigation}) {
         Keyboard.dismiss();
       }}>
       <View style={styles.container}>
-        <Header1 judul={'AddBook'} />
+        <Header2 judul={'AddBook'} back={() => navigation.goBack()} />
         <View style={styles.row}>
           <View style={styles.kotak}>
             <View style={styles.kotakJudul}>

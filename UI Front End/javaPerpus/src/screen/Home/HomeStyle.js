@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     height: hp(45),
     alignSelf: 'center',
     position: 'absolute',
-    left: wp(200),
+    left: wp(270),
   },
   quantity: {
     alignSelf: 'center',
@@ -52,6 +52,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
+  },
+  borrowBook: {
+    position: 'absolute',
+    bottom: hp(20),
+    left: wp(20),
+    color: 'red',
   },
 });
 

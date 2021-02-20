@@ -15,6 +15,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
   },
+  icon: {
+    alignSelf: 'center',
+    position: 'absolute',
+    left: wp(15),
+  },
 });
 
 export default styles;

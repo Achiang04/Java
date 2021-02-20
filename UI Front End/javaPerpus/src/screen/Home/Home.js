@@ -52,7 +52,12 @@ export default function Home({navigation}) {
 
   const RenderBook = ({item}) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Borrow', {
+            judul: item.title,
+          })
+        }>
         <View style={styles.containerBook}>
           <View style={styles.bookImageContainer}>
             <Image
@@ -77,7 +82,7 @@ export default function Home({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Header1 judul={'Borrowing'} />
+      <Header1 judul={'Home'} />
       {buffer}
       <FlatList
         data={book.data}
@@ -91,6 +96,7 @@ export default function Home({navigation}) {
         onPress={() => navigation.navigate('AddBook')}>
         <Text style={styles.addBookText}>Add Book</Text>
       </TouchableOpacity>
+      <Text style={styles.borrowBook}>** Borrow? click the Book</Text>
     </View>
   );
 }
