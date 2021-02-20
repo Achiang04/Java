@@ -25,6 +25,34 @@ const styles = StyleSheet.create({
   judulContainer: {
     marginLeft: wp(15),
   },
+  bulatQuantity: {
+    borderWidth: 1,
+    padding: wp(10),
+    borderRadius: 100,
+    width: wp(40),
+    height: hp(45),
+    alignSelf: 'center',
+    position: 'absolute',
+    left: wp(200),
+  },
+  quantity: {
+    alignSelf: 'center',
+    fontSize: RFPercentage(2.5),
+  },
+  addBook: {
+    position: 'absolute',
+    bottom: hp(20),
+    right: wp(20),
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: wp(10),
+  },
+  addBookText: {
+    fontSize: RFPercentage(2),
+  },
+  title: {
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;

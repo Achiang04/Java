@@ -5,12 +5,14 @@ import {
   Keyboard,
   Text,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 
 import Axios from 'axios';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import {wp, hp} from '../../reusable/Responsive/dimen';
 import styles from './LoginStyle';
 import Input from '../../reusable/input/Input';
 import Icon from '../../reusable/buttons/Icon';
@@ -21,27 +23,39 @@ export default function Login({navigation}) {
   const [visible, setVisible] = useState(true);
   const [username, setUsername] = useState('asep1');
   const [password, setPassword] = useState('asep1');
+  const [loading, setLoading] = useState(false);
 
-  // async function loginAction(username, password) {
-  //   console.log('try to login');
-  //   try {
-  //     const response = await Axios.post(`http://10.0.2.2:9000/authenticate`, {
-  //       body: JSON.stringify({
-  //         userName: username,
-  //         password: password,
-  //       }),
+  // const loginAction = (username, password) => {
+  //   setLoading(true);
+  //   console.log('try login');
+  //   fetch(`https://murmuring-shelf-21670.herokuapp.com/authenticate`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Accept: 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       userName: username,
+  //       password: password,
+  //     }),
+  //   })
+  //     .then((response) => {
+  //       console.log('fetch response', response);
+  //       // AsyncStorage.setItem('userToken', response);
+  //       setLoading(false);
+  //       console.log('login done');
+  //       return true;
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       return false;
   //     });
-  //     console.log('response', response);
-  //     await AsyncStorage.setItem('userToken', response.data.access_token);
-  //     navigation.replace('Home');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  // };
 
   const loginAction = (username, password) => {
-    console.log('try to login');
-    fetch(`http://10.0.2.2:9000/authenticate`, {
+    setLoading(true);
+    console.log('try login 2');
+    fetch(`https://murmuring-shelf-21670.herokuapp.com/authenticate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,15 +66,26 @@ export default function Login({navigation}) {
         password: password,
       }),
     })
-      .then((response) => response.json())
       .then((json) => {
-        console.log('response', json);
-        navigation.replace('Home');
+        console.log('fetch response', json);
+        // AsyncStorage.setItem('userToken', response);
+        setLoading(false);
+        console.log('login done');
+        navigation.navigate('Home');
       })
       .catch((err) => {
+        setLoading(false);
         console.error(err);
+        return false;
       });
   };
+
+  let buffer;
+  if (loading) {
+    buffer = <ActivityIndicator color={'#1A3150'} size={wp(20)} />;
+  } else {
+    buffer = <Text>Login</Text>;
+  }
 
   return (
     <TouchableWithoutFeedback
@@ -98,17 +123,14 @@ export default function Login({navigation}) {
           </View>
         </View>
         <Buttons
-          text={'Login'}
+          text={buffer}
           color={'white'}
           bgColor={'#3C8B43'}
           borColor={'#3C8B43'}
           height={40}
           width={'90%'}
           radius={7}
-          press={() => {
-            // loginAction(username, password);
-            navigation.replace('Home');
-          }}
+          press={() => loginAction(username, password)}
         />
         <TouchableOpacity
           style={styles.signUpText}
