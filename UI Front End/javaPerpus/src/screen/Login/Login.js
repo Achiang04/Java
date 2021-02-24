@@ -120,6 +120,7 @@ export default function Login({navigation}) {
                 setShow(!show);
               }}
             />
+            
           </View>
         </View>
         <Buttons
