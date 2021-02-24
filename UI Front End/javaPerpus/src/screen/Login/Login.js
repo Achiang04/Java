@@ -25,33 +25,6 @@ export default function Login({navigation}) {
   const [password, setPassword] = useState('asep1');
   const [loading, setLoading] = useState(false);
 
-  // const loginAction = (username, password) => {
-  //   setLoading(true);
-  //   console.log('try login');
-  //   fetch(`https://murmuring-shelf-21670.herokuapp.com/authenticate`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Accept: 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       userName: username,
-  //       password: password,
-  //     }),
-  //   })
-  //     .then((response) => {
-  //       console.log('fetch response', response);
-  //       // AsyncStorage.setItem('userToken', response);
-  //       setLoading(false);
-  //       console.log('login done');
-  //       return true;
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       return false;
-  //     });
-  // };
-
   const loginAction = (username, password) => {
     setLoading(true);
     console.log('try login 2');
@@ -120,7 +93,6 @@ export default function Login({navigation}) {
                 setShow(!show);
               }}
             />
-            
           </View>
         </View>
         <Buttons

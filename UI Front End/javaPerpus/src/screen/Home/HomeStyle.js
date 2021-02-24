@@ -13,10 +13,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: hp(10),
     marginTop: hp(10),
+    zIndex: 0,
   },
   bookImage: {
-    height: hp(70),
-    width: wp(70),
+    height: hp(90),
+    width: wp(80),
   },
   bookImageContainer: {
     padding: wp(10),
@@ -42,22 +43,18 @@ const styles = StyleSheet.create({
   addBook: {
     position: 'absolute',
     bottom: hp(20),
-    right: wp(20),
+    left: wp(20),
     borderWidth: 1,
     borderRadius: 10,
     padding: wp(10),
+    backgroundColor: 'black',
   },
   addBookText: {
     fontSize: RFPercentage(2),
+    color: 'white',
   },
   title: {
     fontWeight: 'bold',
-  },
-  borrowBook: {
-    position: 'absolute',
-    bottom: hp(20),
-    left: wp(20),
-    color: 'red',
   },
 });
 

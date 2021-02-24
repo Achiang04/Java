@@ -7,9 +7,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  fill: {
+  createBook: {
     marginLeft: wp(20),
     marginTop: hp(20),
+    fontWeight: 'bold',
+  },
+  button: {
+    marginBottom: hp(20),
+  },
+  bookData: {
+    marginLeft: wp(20),
+    marginTop: hp(5),
   },
 });
 

@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import Header2 from '../../reusable/header/Header2';
 import styles from './AddBookStyle';
@@ -28,6 +29,8 @@ export default function AddBook({navigation}) {
   const [loading, setLoading] = useState(false);
   const [authorLoading, setAuthorLoading] = useState(false);
   const [publisherLoading, setPublisherLoading] = useState(false);
+  const [selectedAuthor, setSelectedAuthor] = useState(null);
+  const [selectedPublisher, setSelectedPublisher] = useState(null);
 
   console.log('----');
   console.log('author', authorName);
@@ -121,11 +124,39 @@ export default function AddBook({navigation}) {
   }, []);
 
   const RenderAuthor = ({item}) => {
-    return <Text style={styles.authorName}>{item.firstname}</Text>;
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setSelectedAuthor(item.id), setAuthorName(item.firstname);
+        }}>
+        <Text
+          style={
+            item.id === selectedAuthor
+              ? styles.authorNameSeleced
+              : styles.authorName
+          }>
+          {item.firstname}
+        </Text>
+      </TouchableOpacity>
+    );
   };
 
   const RenderPublisher = ({item}) => {
-    return <Text style={styles.authorName}>{item.name}</Text>;
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setSelectedPublisher(item.id), setPublisherName(item.name);
+        }}>
+        <Text
+          style={
+            item.id === selectedPublisher
+              ? styles.authorNameSeleced
+              : styles.authorName
+          }>
+          {item.name}
+        </Text>
+      </TouchableOpacity>
+    );
   };
 
   let buffer;
@@ -151,7 +182,7 @@ export default function AddBook({navigation}) {
         Keyboard.dismiss();
       }}>
       <View style={styles.container}>
-        <Header2 judul={'AddBook'} back={() => navigation.goBack()} />
+        <Header2 judul={'Add Book'} back={() => navigation.goBack()} />
         <View style={styles.row}>
           <View style={styles.kotak}>
             <View style={styles.kotakJudul}>
@@ -161,6 +192,7 @@ export default function AddBook({navigation}) {
             <FlatList
               data={author.data}
               keyExtractor={(item) => item.id}
+              extraData={selectedAuthor}
               renderItem={({item}) => {
                 return <RenderAuthor item={item} />;
               }}
@@ -174,6 +206,7 @@ export default function AddBook({navigation}) {
             <FlatList
               data={publisher.data}
               keyExtractor={(item) => item.id}
+              extraData={selectedPublisher}
               renderItem={({item}) => {
                 return <RenderPublisher item={item} />;
               }}
@@ -183,12 +216,6 @@ export default function AddBook({navigation}) {
         <View style={styles.line}></View>
         <ScrollView>
           <Text style={styles.createBook}>Input new Book data</Text>
-          <Input
-            text={'Author'}
-            ph={'Input Author'}
-            change={(item) => setAuthorName(item)}
-            value={authorName}
-          />
           <Input
             text={'Title'}
             ph={'Input Title'}
@@ -200,12 +227,6 @@ export default function AddBook({navigation}) {
             ph={'Input Year'}
             change={(item) => setYear(item)}
             value={year}
-          />
-          <Input
-            text={'Publisher'}
-            ph={'Input Publisher'}
-            change={(item) => setPublisherName(item)}
-            value={publisherName}
           />
           <Input
             text={'Category'}

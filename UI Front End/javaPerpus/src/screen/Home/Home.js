@@ -7,11 +7,14 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import styles from './HomeStyle';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Axios from 'axios';
+import {RFPercentage} from 'react-native-responsive-fontsize';
+
+import styles from './HomeStyle';
 import Header1 from '../../reusable/header/Header1';
 import {wp, hp} from '../../reusable/Responsive/dimen';
-import Axios from 'axios';
 import {token} from '../../general/constant';
 
 export default function Home({navigation}) {
@@ -43,7 +46,15 @@ export default function Home({navigation}) {
 
   useEffect(() => {
     getAllBook();
-  }, []);
+
+    const unsubscribe = navigation.addListener(() => {
+      getAllBook();
+    });
+
+    return () => {
+      unsubscribe;
+    };
+  }, [navigation]);
 
   let buffer;
   if (loading) {
@@ -54,8 +65,14 @@ export default function Home({navigation}) {
     return (
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate('Borrow', {
+          navigation.navigate('Book', {
+            id: item.id,
             judul: item.title,
+            author: item.author,
+            publisher: item.publisher,
+            year: item.year,
+            category: item.category,
+            quantity: item.quantity,
           })
         }>
         <View style={styles.containerBook}>
@@ -72,7 +89,9 @@ export default function Home({navigation}) {
               <Text>{item.category}</Text>
             </View>
             <View style={styles.bulatQuantity}>
-              <Text style={styles.quantity}>{item.quantity}</Text>
+              <Text style={styles.quantity} numberOfLines={1}>
+                {item.quantity}
+              </Text>
             </View>
           </View>
         </View>
@@ -96,7 +115,6 @@ export default function Home({navigation}) {
         onPress={() => navigation.navigate('AddBook')}>
         <Text style={styles.addBookText}>Add Book</Text>
       </TouchableOpacity>
-      <Text style={styles.borrowBook}>** Borrow? click the Book</Text>
     </View>
   );
 }

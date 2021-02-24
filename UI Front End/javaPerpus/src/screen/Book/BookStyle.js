@@ -7,6 +7,32 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  fill: {
+    marginLeft: wp(20),
+    marginTop: hp(20),
+  },
+  delete: {
+    position: 'absolute',
+    bottom: hp(20),
+    left: wp(20),
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: wp(10),
+    backgroundColor: 'black',
+  },
+  update: {
+    position: 'absolute',
+    bottom: hp(20),
+    left: wp(130),
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: wp(10),
+    backgroundColor: 'black',
+  },
+  deleteText: {
+    color: '#fff',
+    fontSize: RFPercentage(2),
+  },
   kotak: {
     width: '40%',
     borderWidth: 1,
@@ -35,18 +61,6 @@ const styles = StyleSheet.create({
     marginLeft: wp(10),
     marginTop: hp(5),
     color: 'red',
-  },
-  createBook: {
-    marginLeft: wp(20),
-    marginTop: hp(20),
-  },
-  line: {
-    borderBottomWidth: 1,
-    width: '100%',
-    marginTop: hp(20),
-  },
-  button: {
-    marginBottom: hp(20),
   },
 });
 

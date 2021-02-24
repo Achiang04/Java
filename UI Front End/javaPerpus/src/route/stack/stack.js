@@ -4,7 +4,8 @@ import Login from '../../screen/Login/Login';
 import Register from '../../screen/Register/Register';
 import Home from '../../screen/Home/Home';
 import AddBook from '../../screen/AddBook/AddBook';
-import Borrow from '../../screen/Borrow/Borrow';
+import Book from '../../screen/Book/Book';
+import EditBook from '../../screen/Book/EditBook';
 
 const Stack = createStackNavigator();
 
@@ -15,7 +16,8 @@ export default function StackScreen() {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="AddBook" component={AddBook} />
-      <Stack.Screen name="Borrow" component={Borrow} />
+      <Stack.Screen name="Book" component={Book} />
+      <Stack.Screen name="EditBook" component={EditBook} />
     </Stack.Navigator>
   );
 }
